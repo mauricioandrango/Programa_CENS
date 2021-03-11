@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">266300976779-0vvnof4vg09ogm2t8tpong9g475u16ip.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://proyectocens-b4181.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">266300976779</string>
+    <string name="google_api_key" translatable="false">AIzaSyDFEIb88NpdtD6P9qjYyhd7MS6PZH3KqHQ</string>
+    <string name="google_app_id" translatable="false">1:266300976779:android:1c51769f021ab93421ae8e</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDFEIb88NpdtD6P9qjYyhd7MS6PZH3KqHQ</string>
+    <string name="google_storage_bucket" translatable="false">proyectocens-b4181.appspot.com</string>
+    <string name="project_id" translatable="false">proyectocens-b4181</string>
+</resources>
