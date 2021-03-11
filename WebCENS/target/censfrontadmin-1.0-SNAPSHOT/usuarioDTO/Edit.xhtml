@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+   <style>
+        /* reset on the showcase style*/
+        body .ui-panelgrid .ui-panelgrid-cell {
+            background-color: transparent;
+        }
+
+        /* example use of styles for your form */
+        .my-heading-row {
+            background-color: var(--surface-c);
+            font-weight: bold;
+        }
+    </style>
+    <ui:composition>
+
+        <p:dialog id="UsuarioDTOEditDlg" widgetVar="UsuarioDTOEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar_Datos_Usuario">
+            <h:form id="UsuarioDTOEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" 
+                                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                                layout="grid"
+                                styleClass="ui-panelgrid-blank ui-fluid"
+                                style="border:0px none; background-color:transparent;"
+                                rendered="#{usuarioDTOController.selected != null}">
+                        <p:outputLabel value="#{bundletwo.EditUsuarioDTOLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{usuarioDTOController.selected.id}" title="#{bundletwo.EditUsuarioDTOTitle_id}" />
+                        <p:outputLabel value="Editar_Nombre_Usuario" for="username" />
+                        <p:inputText id="username" value="#{usuarioDTOController.selected.username}" title="#{bundletwo.EditUsuarioDTOTitle_username}" />
+                        <p:outputLabel value="Editar_Contraseña" for="password" />
+                        <p:inputText id="password" value="#{usuarioDTOController.selected.password}" title="#{bundletwo.EditUsuarioDTOTitle_password}" />
+                        <p:outputLabel value="Editar_Nombres" for="nombres" />
+                        <p:inputText id="nombres" value="#{usuarioDTOController.selected.nombres}" title="#{bundletwo.EditUsuarioDTOTitle_nombres}" />
+                        <p:outputLabel value="Editar_Apellidos" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{usuarioDTOController.selected.apellidos}" title="#{bundletwo.EditUsuarioDTOTitle_apellidos}" />
+                        <p:outputLabel value="Editar_Correo" for="mail" />
+                        <p:inputText id="mail" value="#{usuarioDTOController.selected.mail}" title="#{bundletwo.EditUsuarioDTOTitle_mail}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuarioDTOController.update}" value="Guardar" update="display,:UsuarioDTOListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UsuarioDTOEditDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="UsuarioDTOEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

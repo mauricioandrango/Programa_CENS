@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html">
+    <h:head>
+        
+        
+        <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+
+                <title>Sistema CENS</title>
+            </f:facet>
+        
+    </h:head>
+    
+        <style>
+            body {
+                background-color: #87B6D9;
+                font-size: 12px;
+
+            }
+        </style>
+    <h:body>
+        <p:layout fullPage="true">
+            
+         <p:layoutUnit position="north" size="120" resizable="false" closable="true" collapsible="true" >
+                    <h:panelGrid columns="3" columnClasses="basicStyle, centerStyle, basicStyle">
+                        <h:graphicImage name="/images/futuro.jpg" width="181" /> 
+ 
+                        <div align="center">
+                            <b style="font-family: times, serif; font-size:14pt; font-style:arial">
+                                SISTEMA DE ENCUESTA BARRIAL CENS</b>
+                        </div>
+                    </h:panelGrid>
+                </p:layoutUnit>
+            <p:layoutUnit position="west" size="200" header="Menu" collapsible="true">
+            <p:menu style="border: 0px;" >
+                <p:menuitem value="Salir" outcome="/index" icon="ui-icon-circle-close"/>
+                <p:submenu label="Administrar Usuarios" icon="ui-icon-wrench">
+                  <p:menuitem value="Usuarios" outcome="/usuarioDTO/List.xhtml" />
+                  </p:submenu>
+                <p:submenu label="Crear Encuesta" icon="ui-icon-clipboard">  
+                    <p:menuitem value="Encuestas" outcome="/encuestaDTO/List.xhtml" />
+                    <p:menuitem outcome="/preguntaDTO/List" value="Preguntas"/>
+                    <p:menuitem outcome="/respuestaDTO/List" value="Respuestas"/>
+                </p:submenu>
+               </p:menu>
+            </p:layoutUnit>
+            
+             <p:layoutUnit position="center" >
+                    <ui:insert name="content"/>
+                    <p:growl id="growl" showDetail="true" />
+                    <center>
+                    <p:graphicImage id="nature" name="images/censo.jpg" />
+                    </center>
+                    <p:resizable for="nature" animate="true" ghost="true">
+                        <p:ajax listener="#{resizableView.onResize}" update="growl" />
+                    </p:resizable>
+                </p:layoutUnit>
+           
+       </p:layout>
+    </h:body>
+</f:view>
+</html>

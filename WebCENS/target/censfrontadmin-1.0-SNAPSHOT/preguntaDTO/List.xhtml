@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="Preguntas Cens"></h:outputText>
+        </ui:define>
+         <ui:define name="windowTitle">
+                #{msgs.planetariumTitle}
+            </ui:define> 
+        <ui:define name="content">
+            <h:form id="PreguntaDTOListForm">
+                <p:panel header="Lista Preguntas">
+                    <h:panelGrid columns="1">
+                        
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear" actionListener="#{preguntaDTOController.prepareCreate}" update=":PreguntaDTOCreateForm" oncomplete="PF('PreguntaDTOCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Visualizar" update=":PreguntaDTOViewForm" oncomplete="PF('PreguntaDTOViewDialog').show()" disabled="#{empty preguntaDTOController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":PreguntaDTOEditForm" oncomplete="PF('PreguntaDTOEditDialog').show()" disabled="#{empty preguntaDTOController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Borrar" actionListener="#{preguntaDTOController.destroy}" update=":growl,datalist" disabled="#{empty preguntaDTOController.selected}"/>
+                        </f:facet>
+                    </h:panelGrid>
+                    <h:panelGrid style="border: 0px;" id="pgClientes" >
+                    <p:dataTable id="datalist" value="#{preguntaDTOController.items}" var="item"
+                                 selectionMode="single" selection="#{preguntaDTOController.selected}"
+                                 paginator="true"
+                                  paginatorPosition="bottom"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 scrollable="true"
+                                     scrollRows="30"
+                                     scrollHeight="150"
+                                 >
+
+                        
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Codigo de Pregunta"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Tipo_Pregunta"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPreguntaDTOTitle_titulo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titulo}"/>
+                        </p:column>
+                    <!-- columna opciones de preguntas -->
+
+                        
+                    </p:dataTable>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

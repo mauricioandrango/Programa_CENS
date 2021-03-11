@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+     <style>
+        /* reset on the showcase style*/
+        body .ui-panelgrid .ui-panelgrid-cell {
+            background-color: transparent;
+        }
+
+        /* example use of styles for your form */
+        .my-heading-row {
+            background-color: var(--surface-c);
+            font-weight: bold;
+        }
+    </style>
+    <ui:composition>
+
+        <p:dialog id="UsuarioDTOCreateDlg" widgetVar="UsuarioDTOCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nuevo Usuario">
+            <h:form id="UsuarioDTOCreateForm">
+        
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4"
+                                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                                layout="grid"
+                                styleClass="ui-panelgrid-blank ui-fluid"
+                                style="border:0px none; background-color:transparent;">
+                        <p:outputLabel value="Nombre_Usuario"   for="@next"/>
+                        <p:inputText id="username" value="#{usuarioDTOController.selected.username}" title="#{bundle.CreateUsuarioDTOTitle_username}" />
+                        <p:outputLabel value="Contraseña"  for="@next" />
+                        <p:password id="password" value="#{usuarioDTOController.selected.password}" title="#{bundle.CreateUsuarioDTOTitle_password}" />
+                        <p:outputLabel value="Nombres"  for="@next"/>
+                        <p:inputText id="nombres" value="#{usuarioDTOController.selected.nombres}" title="#{bundle.CreateUsuarioDTOTitle_nombres}" />
+                        <p:outputLabel value="Apellidos" for="@next" />
+                        <p:inputText id="apellidos" value="#{usuarioDTOController.selected.apellidos}" title="#{bundle.CreateUsuarioDTOTitle_apellidos}" />
+                        <p:outputLabel value="Correo"  for="@next" />
+                        <p:inputText id="mail" value="#{usuarioDTOController.selected.mail}" title="#{bundle.CreateUsuarioDTOTitle_mail}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuarioDTOController.create}" value="Guardar" update="display,:UsuarioDTOListForm:datalist,:growl" oncomplete="handleSubmit(args,'UsuarioDTOCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="UsuarioDTOCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

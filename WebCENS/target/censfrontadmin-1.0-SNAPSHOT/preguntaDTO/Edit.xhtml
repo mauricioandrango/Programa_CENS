@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+ <style>
+        /* reset on the showcase style*/
+        body .ui-panelgrid .ui-panelgrid-cell {
+            background-color: transparent;
+        }
+
+        /* example use of styles for your form */
+        .my-heading-row {
+            background-color: var(--surface-c);
+            font-weight: bold;
+        }
+    </style>
+    <ui:composition>
+
+        <p:dialog id="PreguntaDTOEditDlg" widgetVar="PreguntaDTOEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar Pregunta">
+            <h:form id="PreguntaDTOEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" 
+                                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                                layout="grid"
+                                styleClass="ui-panelgrid-blank ui-fluid"
+                                style="border:0px none; background-color:transparent;"
+                                 rendered="#{preguntaDTOController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPreguntaDTOLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{preguntaDTOController.selected.id}" title="#{bundle.EditPreguntaDTOLabel_id}" />
+                        <p:outputLabel value="#{bundle.EditPreguntaDTOLabel_tipo}" for="tipo" />
+                        <p:inputText id="tipo" value="#{preguntaDTOController.selected.tipo}" title="#{bundle.EditPreguntaDTOTitle_tipo}" />
+                        <p:outputLabel value="#{bundle.EditPreguntaDTOLabel_titulo}" for="titulo" />
+                        <p:inputText id="titulo" value="#{preguntaDTOController.selected.titulo}" title="#{bundle.EditPreguntaDTOTitle_titulo}" />
+                        <p:outputLabel value="#{bundle.EditPreguntaDTOLabel_opciones}" for="opciones" />
+                        <p:inputText id="opciones" value="#{preguntaDTOController.selected.opciones}" title="#{bundle.EditPreguntaDTOTitle_opciones}" />
+                        <p:outputLabel value="#{bundle.CreatePreguntaDTOLabel_encuesta_id}" for="encuesta" />
+                        <p:selectOneMenu id="encuesta" value="#{preguntaDTOController.encuestaSelected}">
+                            <f:selectItem itemLabel="#{preguntaDTOController.encuestaSelected}" itemValue="#{preguntaDTOController.encuestaSelected}"/>
+                            <f:selectItems value="#{preguntaDTOController.allEncuestas}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{preguntaDTOController.update}" value="Guardar" update="display,:PreguntaDTOListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PreguntaDTOEditDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="PreguntaDTOEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

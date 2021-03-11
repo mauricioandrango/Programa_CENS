@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EncuestaDTOViewDlg" widgetVar="EncuestaDTOViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Visualizar_Pregunta">
+            <h:form id="EncuestaDTOViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{encuestaDTOController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEncuestaDTOLabel_id}"/>
+                        <h:outputText value="#{encuestaDTOController.selected.id}" title="#{bundle.ViewEncuestaDTOTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewEncuestaDTOLabel_nombre}"/>
+                        <h:outputText value="#{encuestaDTOController.selected.nombre}" title="#{bundle.ViewEncuestaDTOTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewEncuestaDTOLabel_descripcion}"/>
+                        <h:outputText value="#{encuestaDTOController.selected.descripcion}" title="#{bundle.ViewEncuestaDTOTitle_descripcion}"/>
+                        <!-- aqui va la vista d epregunta -->
+                    </p:panelGrid>
+                    <p:commandButton value="Cancelar" onclick="EncuestaDTOViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

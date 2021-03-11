@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+ <style>
+        /* reset on the showcase style*/
+        body .ui-panelgrid .ui-panelgrid-cell {
+            background-color: transparent;
+        }
+
+        /* example use of styles for your form */
+        .my-heading-row {
+            background-color: var(--surface-c);
+            font-weight: bold;
+        }
+    </style>
+    <ui:composition>
+
+        <p:dialog id="EncuestaDTOCreateDlg" widgetVar="EncuestaDTOCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Crear_Nueva_Encuesta">
+            <h:form id="EncuestaDTOCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" 
+                                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                                layout="grid"
+                                styleClass="ui-panelgrid-blank ui-fluid"
+                                style="border:0px none; background-color:transparent;"
+                                 rendered="#{encuestaDTOController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEncuestaDTOLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{encuestaDTOController.selected.nombre}" title="#{bundle.CreateEncuestaDTOTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreateEncuestaDTOLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{encuestaDTOController.selected.descripcion}" title="#{bundle.CreateEncuestaDTOTitle_descripcion}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{encuestaDTOController.create}" value="Guardar" update="display,:EncuestaDTOListForm:datalist,:growl" oncomplete="handleSubmit(args,'EncuestaDTOCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="EncuestaDTOCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

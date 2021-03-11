@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+ <style>
+        /* reset on the showcase style*/
+        body .ui-panelgrid .ui-panelgrid-cell {
+            background-color: transparent;
+        }
+
+        /* example use of styles for your form */
+        .my-heading-row {
+            background-color: var(--surface-c);
+            font-weight: bold;
+        }
+    </style>
+    <ui:composition>
+
+        <p:dialog id="EncuestaDTOEditDlg" widgetVar="EncuestaDTOEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar_Encuesta">
+            <h:form id="EncuestaDTOEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" 
+                                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                                layout="grid"
+                                styleClass="ui-panelgrid-blank ui-fluid"
+                                style="border:0px none; background-color:transparent;"
+                                 rendered="#{encuestaDTOController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEncuestaDTOLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{encuestaDTOController.selected.id}" title="#{bundle.EditEncuestaDTOTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditEncuestaDTOLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{encuestaDTOController.selected.nombre}" title="#{bundle.EditEncuestaDTOTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.EditEncuestaDTOLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{encuestaDTOController.selected.descripcion}" title="#{bundle.EditEncuestaDTOTitle_descripcion}" />
+                        <!-- aqui va editar pregunta NO VA-->
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{encuestaDTOController.update}" value="Guardar" update="display,:EncuestaDTOListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EncuestaDTOEditDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="EncuestaDTOEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
